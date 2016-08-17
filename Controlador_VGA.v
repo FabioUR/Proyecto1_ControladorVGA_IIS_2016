@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: 
+// Student: Fabio Ureña Rojas
 // 
 // Create Date:    17:17:32 08/11/2016 
 // Design Name: 
