@@ -2,12 +2,12 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineers:	Fabio UreÃ±a y Steven LeÃ³n.
+// Engineers:	Fabio Ureña y Steven León.
 //
 // Create Date:   03:48:12 08/19/2016
-// Design Name:   Controlador_VGA.
+// Design Name:   
 // Module Name:   Sincronizador_VGA_TB.
-// Project Name:  
+// Project Name:  Controlador_VGA.
 // Target Device:  
 // Tool versions:  
 // Description: 
@@ -62,8 +62,7 @@ module Sincronizador_VGA_TB ();
 		// Add stimulus here
 		RESET = 0;
 		
-		//#17358000;
-		#34716000;
+		#16831990; // Tiempo que tarda para un pantallazo.
 		
 		$stop;
 	end

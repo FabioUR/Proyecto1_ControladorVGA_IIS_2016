@@ -1,11 +1,11 @@
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: Fabio Ure帽a Rojas.
+// Company: ITCR
+// Engineer: Fabio Ure馻 Rojas.
 // 
 // Create Date:    17:17:32 08/11/2016 
-// Design Name:    Controlador_VGA.
+// Design Name:    
 // Module Name:    Sincronizador_VGA.
-// Project Name: 
+// Project Name:   Controlador_VGA.
 // Target Devices: 
 // Tool versions: 
 // Description: 
@@ -24,8 +24,8 @@ module Sincronizador_VGA(
 	output wire [9:0] pixel_X, pixel_Y
     );
 	
-	//declaraci贸n de constantes
-	//parametros de sincronizaci贸n del controlador VGA 640x480
+	//declaraci髇 de constantes
+	//parametros de sincronizaci髇 del controlador VGA 640x480
 	//dichos valores o parametros salen de las graficas
 	localparam HM = 640   ; //area de muestro horizontal
 	localparam H_izq = 48 ; //borde izquierdo horizontal
@@ -46,10 +46,10 @@ module Sincronizador_VGA(
 	
 	//salida del buffer 
 	reg sincr_vert_reg, sincr_horiz_reg; //registro vertical sincronizador, registro horizontal soncronizador
-	wire sincr_vert_siguiente, sincr_horiz_siguiente; // sincronizaci贸n vertical siguiente, sincronizaci贸n horizontal siguiente
+	wire sincr_vert_siguiente, sincr_horiz_siguiente; // sincronizaci髇 vertical siguiente, sincronizaci髇 horizontal siguiente
 	
-	//Estado de se帽al
-	wire horiz_fin, vert_fin, pixel_tick; // finalizaci贸n horizontal, final vertical,
+	//Estado de se馻l
+	wire horiz_fin, vert_fin, pixel_tick; // finalizaci髇 horizontal, final vertical,
 	
 	//Cuerpo/Registros
 	
@@ -74,7 +74,7 @@ module Sincronizador_VGA(
 	assign mod2_siguiente =~mod2_registro;
 	assign pixel_tick = mod2_registro;
 	
-	//Estados de se帽al
+	//Estados de se馻l
 	//FIN indicador Contador horizontal 0-799
 	assign horiz_fin = (cont_horiz_regist==(HM+H_izq+H_der+H_retraz-1));
 	//FIN indicador contador vertical 0-524
@@ -105,13 +105,13 @@ module Sincronizador_VGA(
 //	Se toma en cuenta la parte de retrazo, de 656-751 en horizontal
 // Asignando un valor booleano a sincr_horiz_siguiente
 	
-	assign sincr_horiz_siguiente = (cont_horiz_regist >=(HM+H_der) && cont_horiz_regist <=(HM+H_der+H_retraz-1));
+	assign sincr_horiz_siguiente = ((cont_horiz_regist >= (HM+H_der)) && (cont_horiz_regist <= (HM+H_der+H_retraz-1)));
 	
 // Se toma en cuenta la parte de retrazo, de 490 a 491
 // Asignando un valor booleano a sincr_vert_siguiente
-	assign sincr_vert_siguiente = (cont_vert_regist >=(VM+V_sup) && cont_vert_regist <=(VM+V_sup+V_retraz-1));
+	assign sincr_vert_siguiente = ((cont_vert_regist >= (VM+V_sup)) && (cont_vert_regist <= (VM+V_sup+V_retraz-1)));
 	
-//Se帽ales de salida, las cuales van al generador de pixeles
+//Se馻les de salida, las cuales van al generador de pixeles
 	assign sincro_horiz = ~sincr_horiz_reg;
 	assign sincro_vert = ~sincr_vert_reg;
 	assign pixel_X = cont_horiz_regist;
