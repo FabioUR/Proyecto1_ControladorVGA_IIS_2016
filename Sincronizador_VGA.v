@@ -1,4 +1,3 @@
-`timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Student: Fabio Ureña Rojas
@@ -18,9 +17,10 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
+
 module Sincronizador_VGA(
 	input wire CLK, RESET,
-	output wire sincro_horiz, sincro_vert, video_on, p_tick,
+	output wire sincro_horiz, sincro_vert, p_tick,
 	output wire [9:0] pixel_X, pixel_Y
     );
 	
@@ -83,8 +83,6 @@ module Sincronizador_VGA(
 	//etapa de contador sincronico horizontal 800
 	always @* begin
 		if (pixel_tick) //25MHz pulso
-			
-
 			if (horiz_fin) 
 				cont_horiz_siguiente = 0;
 			else
@@ -105,25 +103,19 @@ module Sincronizador_VGA(
 	end
 	
 //	Se toma en cuenta la parte de retrazo, de 656-751 en horizontal
-//Asignando un valor booleano a sincr_horiz_siguiente
+// Asignando un valor booleano a sincr_horiz_siguiente
 	
 	assign sincr_horiz_siguiente = (cont_horiz_regist >=(HM+H_der) && cont_horiz_regist <=(HM+H_der+H_retraz-1));
 	
 // Se toma en cuenta la parte de retrazo, de 490 a 491
 // Asignando un valor booleano a sincr_vert_siguiente
-	assign sincr_vert_siguiente = (cont_vert_regist >=(VM+V_inf) && cont_horiz_regist <=(VM+V_inf+V_retraz-1));
+	assign sincr_vert_siguiente = (cont_vert_regist >=(VM+V_sup) && cont_vert_regist <=(VM+V_sup+V_retraz-1));
 	
-//Señal de video_on
-//Siendo un valor booleano, para que un bit ingrese a la parte generadora de pixeles como un pixel de condicion
-	assign video_on = (cont_horiz_regist < HM) && (cont_vert_regist < VM);
-
 //Señales de salida, las cuales van al generador de pixeles
-	assign sincro_horiz = sincr_horiz_reg;
-	assign sincro_vert = sincr_vert_reg;
+	assign sincro_horiz = ~sincr_horiz_reg;
+	assign sincro_vert = ~sincr_vert_reg;
 	assign pixel_X = cont_horiz_regist;
 	assign pixel_Y = cont_vert_regist;
 	assign p_tick = pixel_tick;
-
-
+	
 endmodule
-
