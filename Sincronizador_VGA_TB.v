@@ -2,11 +2,11 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer:
+// Engineers:	Fabio Ureña y Steven León.
 //
 // Create Date:   03:48:12 08/19/2016
-// Design Name:   
-// Module Name:   Sincronizador_VGA_TB
+// Design Name:   Controlador_VGA.
+// Module Name:   Sincronizador_VGA_TB.
 // Project Name:  
 // Target Device:  
 // Tool versions:  
