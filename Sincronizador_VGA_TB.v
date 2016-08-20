@@ -57,7 +57,7 @@ module Sincronizador_VGA_TB ();
 		RESET = 1;
 
 		// Wait 100 ns for global reset to finish
-		#110;
+		#100;
         
 		// Add stimulus here
 		RESET = 0;
