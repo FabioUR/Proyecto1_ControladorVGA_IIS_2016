@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 ////////////////////////////////////////////////////////////////////////////////
 // Company: ITCR
-// Engineer: Steven LeÃ³n.
+// Engineer: Steven León.
 //
 // Create Date:   02:19:48 08/19/2016
 // Design Name:   
@@ -43,13 +43,13 @@ module Generador_Pixeles_TB();
 
 	always # 20 CLK = !CLK;
 		
-	always @ (posedge CLK)
+	always @ (negedge CLK)
 	begin
 		if (pix_x == 799) begin
 			pix_x <= 0;
 			if (pix_y == 524) begin
 				pix_y <= 0;
-				ctrl_rgb <= ctrl_rgb + 1; // DespuÃ©s de cada pantallazo, que ponga el siguiente color.
+				ctrl_rgb <= ctrl_rgb + 1;
 			end
 			else begin
 				pix_y <= pix_y + 1;
@@ -68,7 +68,7 @@ module Generador_Pixeles_TB();
 		pix_y = 10'b0000000000;
 		ctrl_rgb = 3'b000;
 
-		#21440000; // Tiempo para mostrar hasta segunda pantalla (color = 001), lÃ­nea y = 144.
+		#21440000; // Tiempo para mostrar hasta segunda pantalla (color = 001), línea y = 144.
       $stop;
 
 	end
